@@ -1,0 +1,28 @@
+*** Settings ***
+Library  SeleniumLibrary
+
+
+*** Variables ***
+${Browser}     Chrome
+${URL}         http://192.168.0.130:4200/
+
+
+*** Test Cases ***
+Login
+    Open Browser      ${URL}  ${Browser}
+    Maximize Browser Window
+    Input Text       name:username  admin
+    Input Text       name:password  2810
+    Click Button     name:login_button
+    sleep            3
+    click button     //body/app-root[1]/app-home[1]/div[1]/div[3]/div[1]/div[1]/button[1]
+    sleep            3
+    click button     //body/app-root[1]/app-minio-filemanager[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]
+    sleep            2
+    Input Text       name:foldername  aws
+    sleep            3
+    click button     //button[@id='create2']
+    sleep            2
+    click button     //*[@id="close1"]
+    sleep            3
+    Close Browser
