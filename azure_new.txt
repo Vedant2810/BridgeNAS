@@ -1,0 +1,45 @@
+*** Settings ***
+Library  SeleniumLibrary
+
+
+*** Variables ***
+${Browser}     Chrome
+${URL}         http://192.168.0.130:4200/auth
+${UploadFiletest}   //input[@id='file']
+${AddFile}          /home/vedant/selenium-screenshot-13.png
+
+*** Test Cases ***
+Login
+    Open Browser     ${URL}  ${Browser}
+    sleep            2
+    Maximize Browser Window
+    sleep            3
+    Input Text       id:inputEmailAddress  admin
+    Input Text       id:inputChoosePassword  2810
+    Click Button     //body/app-root[1]/app-sign-in[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[1]/div[2]/form[1]/div[3]/div[1]/button[1]
+    sleep            3
+    Input Text       id:otp  654321
+    sleep            2
+    Click Button     //body/app-root[1]/app-sign-in[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/div[2]/div[1]/form[1]/div[2]/div[1]/button[1]
+    sleep            5
+    Click Element    //body/app-root[1]/app-full-layout[1]/div[1]/div[1]/div[1]/div[1]/nas-home[1]/div[2]/div[3]/div[1]/div[1]
+    sleep            5
+    click element    //body/app-root[1]/app-full-layout[1]/div[1]/div[1]/div[1]/div[1]/nas-minio-filemanager[1]/div[2]/nas-directory[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[4]
+    sleep            4
+    click element    //tbody/tr[6]/td[4]/a[1]
+    sleep            5
+    click element    //tbody/tr[5]/td[4]/a[2]
+    sleep            5
+    click element    //tbody/tr[6]/td[4]/a[2]
+    sleep            3
+    click button     //body/app-root[1]/app-full-layout[1]/div[1]/div[1]/div[2]/div[1]/nas-minio-filemanager[1]/div[1]/div[2]/button[1]
+    sleep            3
+    Input Text       //*[@id="addDirectory"]/div/div/form/div[1]/input  rest
+    sleep            4
+    click button     //body/app-root[1]/app-full-layout[1]/div[1]/div[1]/div[1]/div[1]/nas-minio-filemanager[1]/div[3]/div[1]/div[1]/div[1]/form[1]/div[2]/button[2]
+    sleep            3
+    click button     //body/app-root[1]/app-full-layout[1]/div[1]/div[1]/div[1]/div[1]/nas-minio-filemanager[1]/div[1]/div[2]/button[2]
+    Choose File      ${UploadFiletest}     ${AddFile}
+    sleep            2
+    click button     //button[contains(text(),'Upload File')]
+    Close Browser
